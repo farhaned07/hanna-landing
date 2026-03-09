@@ -338,12 +338,12 @@ const ScribeLanding: React.FC = () => {
                                 cta: 'Start Free', ctaBg: '#F0F0F0', ctaColor: '#1A1A1A', popular: false,
                             },
                             {
-                                name: 'Pro', price: '฿1,990', period: '/person/mo', desc: 'For solo practitioners',
+                                name: 'Pro', price: '฿990', period: '/person/mo', desc: 'For solo practitioners',
                                 features: ['Unlimited notes', 'All templates', 'AI commands', 'PDF export', 'Shift handover', 'LINE support'],
                                 cta: 'Start Pro', ctaBg: '#1A1A1A', ctaColor: '#fff', popular: true,
                             },
                             {
-                                name: 'Clinic', price: '฿4,990', period: '/month', desc: 'For your whole team (≤5)',
+                                name: 'Clinic', price: '฿9,990', period: '/month', desc: 'For your whole team (≤5)',
                                 features: ['Everything in Pro', 'Up to 5 team members', 'Team invite links', 'Shared note access', 'Usage analytics', 'Dedicated support'],
                                 cta: 'Start Clinic', ctaBg: '#F0F0F0', ctaColor: '#1A1A1A', popular: false,
                             },
