@@ -67,8 +67,8 @@ export default {
                 'cool-gray': '#F8FAFC',
             },
             fontFamily: {
-                sans: ['Inter', 'system-ui', 'sans-serif'],
-                body: ['Inter', 'sans-serif'],
+                sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+                body: ['Plus Jakarta Sans', 'sans-serif'],
                 mono: ['JetBrains Mono', 'monospace'],
             },
             borderRadius: {
