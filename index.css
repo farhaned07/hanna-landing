@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,93 +6,144 @@
 
 @layer base {
   :root {
-    --noise-bg: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    /* Apollo Imperial Hospital Theme - Clean, Medical, Trustworthy */
+    --background: 0 0% 98%;
+    --foreground: 222 47% 11%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    
+    --primary: 199 89% 30%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+    
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    
+    --accent: 199 89% 30%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 199 89% 30%;
+    
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight;
   }
 }
 
 @layer utilities {
-  .noise {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 50;
-    background-image: var(--noise-bg);
-    opacity: 0.3;
-    mix-blend-mode: soft-light;
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
   }
-
-  /* Light Glass (Primary for light mode) */
+  
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+  
+  /* Animation utilities */
+  .animate-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+  
+  /* Glass effect */
   .glass {
-    @apply bg-white/70 backdrop-blur-xl border border-white/50 shadow-xl transition-all duration-300;
+    @apply bg-background/80 backdrop-blur-xl border border-border shadow-xl;
   }
-
-  .glass-card {
-    @apply glass hover:bg-white/90 hover:shadow-brand transition-all duration-500 ease-spring hover:-translate-y-1;
-  }
-
-  /* Dark Glass (for contrast elements) */
-  .glass-dark {
-    @apply bg-slate-900/80 backdrop-blur-xl border border-white/10 shadow-2xl;
-  }
-
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-hana-accent to-hana-primary;
-  }
-
-  .glow-accent {
-    box-shadow: 0 0 40px rgba(109, 157, 173, 0.2), 0 0 80px rgba(109, 157, 173, 0.1);
+  
+  /* Text balance */
+  .text-balance {
+    text-wrap: balance;
   }
 }
 
-/* ==========================================
-   BASE STYLES - LIGHT MODE TEAL AESTHETIC
-   ========================================== */
-html {
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+/* Framer-style smooth animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-body {
-  @apply bg-surface text-text-primary font-body leading-loose;
-  /* Subtle ambient glow on light background */
-  background-image:
-    radial-gradient(circle at 20% 30%, rgba(109, 157, 173, 0.08), transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(13, 70, 95, 0.06), transparent 40%);
-  background-attachment: fixed;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply font-sans tracking-tight text-text-primary;
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-/* Custom Scrollbar (Light) */
-::-webkit-scrollbar {
-  width: 8px;
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-::-webkit-scrollbar-track {
-  background: #F8FAFC;
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
 }
 
-::-webkit-scrollbar-thumb {
-  @apply bg-slate-300 rounded-full hover:bg-slate-400 transition-colors;
+.animate-scale-in {
+  animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Utilities */
-.border-subtle {
-  @apply border border-border-subtle;
-}
-
-.text-subtle {
-  @apply text-text-secondary;
-}
+/* Stagger delays */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }

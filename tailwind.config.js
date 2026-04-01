@@ -8,51 +8,73 @@ export default {
     theme: {
         extend: {
             colors: {
-                // ========================================
-                // LIGHT MODE - TEAL + OFF-WHITE PALETTE
-                // ========================================
+                // Semantic Design Tokens (CSS Variables)
+                background: "hsl(var(--background))",
+                foreground: "hsl(var(--foreground))",
+                card: {
+                    DEFAULT: "hsl(var(--card))",
+                    foreground: "hsl(var(--card-foreground))",
+                },
+                popover: {
+                    DEFAULT: "hsl(var(--popover))",
+                    foreground: "hsl(var(--popover-foreground))",
+                },
+                primary: {
+                    DEFAULT: "hsl(var(--primary))",
+                    foreground: "hsl(var(--primary-foreground))",
+                },
+                secondary: {
+                    DEFAULT: "hsl(var(--secondary))",
+                    foreground: "hsl(var(--secondary-foreground))",
+                },
+                muted: {
+                    DEFAULT: "hsl(var(--muted))",
+                    foreground: "hsl(var(--muted-foreground))",
+                },
+                accent: {
+                    DEFAULT: "hsl(var(--accent))",
+                    foreground: "hsl(var(--accent-foreground))",
+                },
+                destructive: {
+                    DEFAULT: "hsl(var(--destructive))",
+                    foreground: "hsl(var(--destructive-foreground))",
+                },
+                border: "hsl(var(--border))",
+                input: "hsl(var(--input))",
+                ring: "hsl(var(--ring))",
 
-                // Brand Identity
+                // Legacy colors for existing components
                 'hana': {
-                    'primary': '#6d9dad',   // Muted Teal/Cyan - Main accent
-                    'accent': '#0d465f',    // Deep Teal - Gradient anchor
-                    'dark': '#082f40',      // Darkest brand color
-                    'light': '#eef6f8',     // Very light tint
+                    'primary': '#6d9dad',
+                    'accent': '#0d465f',
+                    'dark': '#082f40',
+                    'light': '#eef6f8',
                 },
-
-                // Surfaces (Light Mode)
                 'surface': {
-                    'DEFAULT': '#F8FAFC',   // Off-White (Slate-50) - Main page bg
-                    'subtle': '#FFFFFF',    // Pure White - Cards, containers
-                    'raised': '#F1F5F9',    // Slate-100 - Hover states
-                    'dark': '#0F172A',      // Navy - For dark sections if needed
+                    'DEFAULT': '#F8FAFC',
+                    'subtle': '#FFFFFF',
+                    'raised': '#F1F5F9',
+                    'dark': '#0F172A',
                 },
-
-                // Borders (Light, visible)
-                'border': {
-                    'DEFAULT': '#E2E8F0',   // Slate-200
-                    'subtle': '#F1F5F9',    // Slate-100
-                    'strong': '#CBD5E1',    // Slate-300
-                    'focus': '#6d9dad',     // Accent for focus rings
-                },
-
-                // Text (Dark on light)
                 'text': {
-                    'primary': '#0F172A',   // Navy
-                    'secondary': '#334155', // Slate-Body
-                    'tertiary': '#64748B',  // Slate-500
+                    'primary': '#0F172A',
+                    'secondary': '#334155',
+                    'tertiary': '#64748B',
                 },
-
-                // Legacy / Direct Access
                 'hana-primary': '#6d9dad',
-                'hana-accent': '#0d465f',   // Deep Teal for headings/accents
+                'hana-accent': '#0d465f',
                 'slate-body': '#334155',
                 'cool-gray': '#F8FAFC',
             },
             fontFamily: {
-                sans: ['Poppins', 'sans-serif'],      // Headlines
-                body: ['Inter', 'sans-serif'],         // Body text
-                mono: ['JetBrains Mono', 'monospace'], // Technical details
+                sans: ['Inter', 'system-ui', 'sans-serif'],
+                body: ['Inter', 'sans-serif'],
+                mono: ['JetBrains Mono', 'monospace'],
+            },
+            borderRadius: {
+                lg: "var(--radius)",
+                md: "calc(var(--radius) - 2px)",
+                sm: "calc(var(--radius) - 4px)",
             },
             letterSpacing: {
                 'tightest': '-0.04em',
@@ -64,15 +86,6 @@ export default {
             transitionTimingFunction: {
                 'spring': 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
             },
-            borderRadius: {
-                'sm': '4px',
-                DEFAULT: '8px',
-                'md': '10px',
-                'lg': '12px',
-                'xl': '16px',
-                '2xl': '24px',
-                '3xl': '32px',
-            },
             boxShadow: {
                 DEFAULT: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
                 'sm': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
@@ -81,8 +94,7 @@ export default {
                 'xl': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
                 '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
                 'inner': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
-                // Colored Shadows (The "Unicorn" Polish)
-                'brand': '0 20px 40px -10px rgba(109, 157, 173, 0.3)', // hana-primary shadow
+                'brand': '0 20px 40px -10px rgba(109, 157, 173, 0.3)',
                 'brand-sm': '0 10px 20px -5px rgba(109, 157, 173, 0.2)',
                 'glow': '0 0 20px rgba(109, 157, 173, 0.5)',
             },
