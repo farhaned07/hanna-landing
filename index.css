@@ -96,3 +96,69 @@ h6 {
 .text-subtle {
   @apply text-text-secondary;
 }
+
+/* Mobile hero refinement: keep the first fold premium, not oversized. */
+@media (max-width: 640px) {
+  header > div {
+    height: 58px !important;
+  }
+
+  header a[href*="subject=Hanna%2090-Day%20Pilot"] {
+    padding: 0.72rem 1.15rem !important;
+    font-size: 0.92rem !important;
+    box-shadow: 0 12px 28px rgba(7, 17, 31, 0.14) !important;
+  }
+
+  #top {
+    padding-top: 6.75rem !important;
+    padding-bottom: 3.5rem !important;
+  }
+
+  #top h1 {
+    font-size: clamp(3.15rem, 14.25vw, 4.15rem) !important;
+    line-height: 0.98 !important;
+    letter-spacing: -0.072em !important;
+    max-width: 100% !important;
+  }
+
+  #top p {
+    line-height: 1.72 !important;
+  }
+
+  #top h1 + p {
+    margin-top: 1.25rem !important;
+    font-size: 1.12rem !important;
+    line-height: 1.68 !important;
+    max-width: 92% !important;
+  }
+
+  #top .mb-6.inline-flex {
+    margin-bottom: 1.15rem !important;
+    padding: 0.62rem 1rem !important;
+    font-size: 0.92rem !important;
+  }
+
+  #top .mt-9 {
+    margin-top: 1.75rem !important;
+  }
+
+  #top a.inline-flex {
+    padding-top: 0.95rem !important;
+    padding-bottom: 0.95rem !important;
+    min-height: 3.4rem !important;
+  }
+
+  #top .mt-12 {
+    margin-top: 2rem !important;
+  }
+}
+
+@media (max-width: 390px) {
+  #top h1 {
+    font-size: clamp(2.8rem, 13.5vw, 3.65rem) !important;
+  }
+
+  #top h1 + p {
+    font-size: 1.05rem !important;
+  }
+}
