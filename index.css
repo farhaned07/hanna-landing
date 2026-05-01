@@ -4,47 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --noise-bg: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
-  }
-}
-
-@layer utilities {
-  .noise {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 50;
-    background-image: var(--noise-bg);
-    opacity: 0.22;
-    mix-blend-mode: soft-light;
-  }
-
-  .glass {
-    @apply bg-white/70 backdrop-blur-xl border border-white/50 shadow-xl transition-all duration-300;
-  }
-
-  .glass-card {
-    @apply glass hover:bg-white/90 hover:shadow-brand transition-all duration-500 ease-spring hover:-translate-y-1;
-  }
-
-  .glass-dark {
-    @apply bg-slate-900/80 backdrop-blur-xl border border-white/10 shadow-2xl;
-  }
-
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-hana-accent to-hana-primary;
-  }
-
-  .glow-accent {
-    box-shadow: 0 0 28px rgba(109, 157, 173, 0.14), 0 0 60px rgba(109, 157, 173, 0.08);
-  }
-}
-
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
@@ -102,12 +61,22 @@ button {
   @apply bg-slate-300 rounded-full hover:bg-slate-400 transition-colors;
 }
 
-.border-subtle {
-  @apply border border-border-subtle;
-}
+@layer utilities {
+  .glass {
+    @apply bg-white/70 backdrop-blur-xl border border-white/50 shadow-xl transition-all duration-300;
+  }
 
-.text-subtle {
-  @apply text-text-secondary;
+  .glass-card {
+    @apply glass hover:bg-white/90 transition-all duration-500 hover:-translate-y-1;
+  }
+
+  .glass-dark {
+    @apply bg-slate-900/80 backdrop-blur-xl border border-white/10 shadow-2xl;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-hana-accent to-hana-primary;
+  }
 }
 
 .bg-\[\#07111f\] h1,
@@ -123,31 +92,32 @@ button {
   color: inherit;
 }
 
-/* Founder-level page rhythm fix:
-   Hero already owns the two-column dark product visual.
-   Problem should read editorially, not repeat the hero pattern. */
+/* Page-grid fix: problem is editorial, not a second hero card. */
 #problem > div > div {
   display: block !important;
-  max-width: 900px !important;
+  max-width: 1180px !important;
   margin-left: auto !important;
   margin-right: auto !important;
 }
 
 #problem > div > div > div:first-child {
-  max-width: 760px !important;
+  max-width: 720px !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
 }
 
 #problem > div > div > div:first-child::after {
   content: 'Plan given → Manual follow-up → Silent risk → Hanna closes the gap';
   display: block;
+  width: min(100%, 640px);
   margin-top: 2rem;
-  padding: 1rem 1.1rem;
+  padding: 0.95rem 1.05rem;
   border: 1px solid rgba(203, 213, 225, 0.72);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.62);
   color: #475569;
-  font-size: 0.95rem;
-  line-height: 1.7;
+  font-size: 0.92rem;
+  line-height: 1.65;
   font-weight: 500;
   box-shadow: 0 12px 32px rgba(15, 23, 42, 0.045);
   backdrop-filter: blur(18px);
@@ -204,10 +174,6 @@ button {
     font-weight: 500 !important;
   }
 
-  h3 {
-    line-height: 1.18 !important;
-  }
-
   p {
     max-width: 100%;
   }
@@ -231,11 +197,6 @@ button {
     padding: 1.55rem 1.2rem !important;
   }
 
-  #how-it-works .grid,
-  #book-demo .grid {
-    gap: 0.85rem !important;
-  }
-
   #how-it-works h2,
   #book-demo h2 {
     color: #ffffff !important;
@@ -253,16 +214,6 @@ button {
 
   #pricing .grid.lg\:grid-cols-3 {
     grid-template-columns: 1fr !important;
-  }
-
-  #pricing .text-\[2\.2rem\] {
-    font-size: 2rem !important;
-  }
-
-  #system .grid,
-  #audience .grid,
-  #problem .grid {
-    gap: 1.55rem !important;
   }
 }
 
@@ -298,15 +249,10 @@ button {
     max-width: 100% !important;
   }
 
-  #top p {
-    line-height: 1.68 !important;
-  }
-
   #top h1 + p {
     margin-top: 1.05rem !important;
     font-size: 1rem !important;
     line-height: 1.66 !important;
-    max-width: 100% !important;
   }
 
   #top .mb-5.inline-flex,
@@ -332,11 +278,7 @@ button {
   #pricing,
   #system,
   #trust,
-  #problem {
-    padding-top: 3.2rem !important;
-    padding-bottom: 3.2rem !important;
-  }
-
+  #problem,
   #how-it-works,
   #book-demo {
     padding-top: 3.2rem !important;
@@ -355,29 +297,6 @@ button {
     font-weight: 500 !important;
     line-height: 1.12 !important;
     letter-spacing: -0.034em !important;
-  }
-
-  #how-it-works .rounded-3xl,
-  #book-demo .rounded-3xl,
-  #pricing .rounded-3xl,
-  #system .rounded-3xl,
-  #audience .rounded-3xl,
-  #trust .rounded-3xl,
-  #pricing .rounded-\[1\.35rem\],
-  #system .rounded-\[1\.35rem\],
-  #audience .rounded-\[1\.35rem\],
-  #trust .rounded-\[1\.35rem\] {
-    padding: 1.1rem !important;
-  }
-
-  #how-it-works .text-base,
-  #book-demo .text-base,
-  #platform .text-base,
-  #pricing .text-base,
-  #system .text-base,
-  #trust .text-base {
-    font-size: 0.98rem !important;
-    line-height: 1.72 !important;
   }
 
   #how-it-works .sm\:grid-cols-2,
