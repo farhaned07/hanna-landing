@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    --noise-bg: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    --noise-bg: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
   }
 }
 
@@ -123,10 +123,9 @@ button {
   color: inherit;
 }
 
-/* Clinical calm sizing guardrails */
 @media (min-width: 1024px) {
   #top h1 {
-    max-width: 780px;
+    max-width: 720px;
   }
 
   #top > div,
@@ -251,9 +250,10 @@ button {
   }
 
   #top h1 {
-    font-size: clamp(2.55rem, 11vw, 3.4rem) !important;
-    line-height: 1.02 !important;
-    letter-spacing: -0.062em !important;
+    font-size: clamp(2.18rem, 9.2vw, 3rem) !important;
+    line-height: 1.1 !important;
+    letter-spacing: -0.042em !important;
+    font-weight: 500 !important;
     max-width: 100% !important;
   }
 
@@ -348,7 +348,8 @@ button {
 
 @media (max-width: 390px) {
   #top h1 {
-    font-size: clamp(2.35rem, 10.6vw, 3.1rem) !important;
+    font-size: clamp(2.05rem, 8.8vw, 2.65rem) !important;
+    line-height: 1.12 !important;
   }
 
   #top h1 + p {
