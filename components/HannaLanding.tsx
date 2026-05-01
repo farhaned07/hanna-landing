@@ -43,10 +43,10 @@ const navItems = [
 ];
 
 const loop = [
-  { icon: Mic2, title: 'Note', body: 'The visit becomes a clinician-reviewed note.' },
-  { icon: ClipboardList, title: 'Care plan', body: 'The note becomes patient instructions and follow-up timing.' },
-  { icon: MessageCircle, title: 'Follow-up', body: 'Patients continue through LINE check-ins.' },
-  { icon: HeartPulse, title: 'Priority', body: 'Nurses see who may need attention today.' },
+  { icon: Mic2, title: 'Note', body: 'Clinician-reviewed documentation.' },
+  { icon: ClipboardList, title: 'Care plan', body: 'Clear next steps for the patient.' },
+  { icon: MessageCircle, title: 'Follow-up', body: 'LINE check-ins after the visit.' },
+  { icon: HeartPulse, title: 'Priority', body: 'Nurse review when risk appears.' },
 ];
 
 const audiences = [
@@ -57,27 +57,23 @@ const audiences = [
 ];
 
 const pilotIncludes = [
-  'Clinician-reviewed note workflow',
+  'Reviewed note workflow',
   'Care plan generation',
   'LINE follow-up handoff',
   'Basic nurse priority view',
-  'Risk signal capture',
-  'Monthly leadership report',
-  'Onboarding and setup',
-  '90-day outcome summary',
+  'Monthly report',
 ];
 
 const annualIncludes = [
-  'Department-level Care Intelligence system',
-  'Scribe workflow for clinical visits',
+  'Department care intelligence system',
+  'Scribe workflow for visits',
   'Care plans and LINE follow-up',
   'Nurse priority queue',
-  'Monthly reports for leadership',
-  'Workflow support and configuration',
+  'Monthly leadership reports',
 ];
 
 const enterpriseIncludes = [
-  'Multi-department configuration',
+  'Multi-department rollout',
   'Executive reporting',
   'Custom workflows and risk rules',
   'Integration roadmap',
@@ -237,14 +233,51 @@ function CommandCenter() {
 }
 
 function Problem() {
+  const gaps = [
+    ['Plan given', 'Patient leaves with instructions.'],
+    ['Manual follow-up', 'Nurses call when they have time.'],
+    ['Silent risk', 'Symptoms change between visits.'],
+  ];
+
   return (
     <Section id="problem">
-      <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
-        <SectionIntro eyebrow="The problem" title="Care disappears after the visit." />
-        <div className="space-y-5 text-base leading-8 text-slate-600 lg:max-w-2xl">
-          <p>Patients leave with instructions, medication changes, and symptoms to monitor.</p>
-          <p>Follow-up is often manual. Nurses call when they can. Patients forget. Symptoms change quietly.</p>
-          <p className="font-medium text-slate-950">Hanna gives the care team visibility after the visit, without asking nurses to chase everyone manually.</p>
+      <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+        <div>
+          <p className={eyebrow}>The problem</p>
+          <h2 className={`mt-4 ${sectionTitle}`}>Care disappears after the visit.</h2>
+          <p className={`mt-5 max-w-xl ${sectionBody}`}>
+            The clinic gives a plan. The patient goes home. The care team often loses visibility until the next appointment, call, or complication.
+          </p>
+        </div>
+
+        <div className="rounded-[1.65rem] border border-slate-200/70 bg-white/76 p-4 shadow-sm backdrop-blur-xl sm:p-5">
+          <div className="rounded-[1.25rem] bg-slate-950 p-4 text-white sm:p-5">
+            <div className="mb-5 flex items-center justify-between gap-4">
+              <p className="text-sm font-medium text-white/60">After the visit</p>
+              <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/65">Visibility gap</span>
+            </div>
+
+            <div className="grid gap-3 md:grid-cols-3">
+              {gaps.map(([title, body], index) => (
+                <div key={title} className="relative rounded-2xl border border-white/10 bg-white/[0.06] p-4">
+                  <div className="mb-5 flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-xs font-semibold text-emerald-300">0{index + 1}</div>
+                  <h3 className="text-base font-medium text-white">{title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-white/55">{body}</p>
+                  {index < gaps.length - 1 && <div className="absolute right-[-17px] top-1/2 hidden h-px w-8 bg-white/20 md:block" />}
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-4 rounded-2xl bg-white p-4 text-slate-950">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.15em] text-emerald-600">Hanna closes the gap</p>
+                  <p className="mt-1 text-base font-medium">Follow-up becomes visible, prioritized, and reportable.</p>
+                </div>
+                <ArrowRight className="h-5 w-5 text-slate-400" />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </Section>
@@ -254,27 +287,47 @@ function Problem() {
 function CareLoop() {
   return (
     <Section id="platform">
-      <div className="mx-auto max-w-2xl text-center">
-        <p className={eyebrow}>The product</p>
-        <h2 className={sectionTitle}>One loop from visit to action.</h2>
-        <p className={`mt-5 ${sectionBody}`}>Documentation is the entry point. The value is what happens after: care plans, follow-up, risk signals, nurse priority, and outcome reporting.</p>
-      </div>
+      <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
+        <div>
+          <p className={eyebrow}>The product</p>
+          <h2 className={`mt-4 ${sectionTitle}`}>One loop from visit to action.</h2>
+          <p className={`mt-5 max-w-xl ${sectionBody}`}>
+            Documentation is the entry point. The value is the connected loop that follows.
+          </p>
+        </div>
 
-      <motion.div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={stagger}>
-        {loop.map((item, index) => {
-          const Icon = item.icon;
-          return (
-            <motion.div key={item.title} variants={fadeUp} transition={smooth} className="rounded-[1.35rem] border border-slate-200/70 bg-white/78 p-5 shadow-sm backdrop-blur-xl">
-              <div className="mb-6 flex items-center justify-between">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-950 text-white"><Icon className="h-4 w-4" /></div>
-                <span className="text-xs font-semibold text-slate-300">0{index + 1}</span>
+        <motion.div className="rounded-[1.65rem] border border-slate-200/70 bg-white/76 p-4 shadow-sm backdrop-blur-xl sm:p-5" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={stagger}>
+          <div className="grid gap-3 md:grid-cols-2">
+            {loop.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <motion.div key={item.title} variants={fadeUp} transition={smooth} className="rounded-[1.25rem] border border-slate-200/70 bg-slate-50/80 p-4">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-950 text-white"><Icon className="h-4 w-4" /></div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-semibold text-emerald-600">0{index + 1}</span>
+                        <h3 className="text-base font-medium tracking-[-0.02em] text-slate-950">{item.title}</h3>
+                      </div>
+                      <p className="mt-2 text-sm leading-6 text-slate-600">{item.body}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          <div className="mt-3 rounded-[1.25rem] bg-[#07111f] p-4 text-white">
+            <div className="grid gap-3 sm:grid-cols-[1fr_auto] sm:items-center">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-300">Outcome</p>
+                <p className="mt-1 text-lg font-medium tracking-[-0.025em]">Nurses know who needs attention today.</p>
               </div>
-              <h3 className="text-lg font-medium tracking-[-0.025em]">{item.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-600">{item.body}</p>
-            </motion.div>
-          );
-        })}
-      </motion.div>
+              <div className="rounded-full bg-emerald-400/15 px-4 py-2 text-sm font-semibold text-emerald-300">Care Intelligence</div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
     </Section>
   );
 }
@@ -337,40 +390,49 @@ function Pricing() {
     <Section id="pricing">
       <div className="mx-auto max-w-2xl text-center">
         <p className={eyebrow}>Packaging</p>
-        <h2 className={sectionTitle}>Pilot first. Annual after proof.</h2>
-        <p className={`mt-5 ${sectionBody}`}>Hanna is sold as Care Intelligence for a department or chronic care program, not as a standalone scribe tool.</p>
+        <h2 className={sectionTitle}>Choose the rollout stage.</h2>
+        <p className={`mt-5 ${sectionBody}`}>Start with one care team. Continue annually once the loop is proven.</p>
       </div>
 
-      <div className="mt-10 grid gap-5 lg:grid-cols-3">
-        <PricingCard eyebrow="90-day proof program" title="Hanna Pilot" price="฿60,000" cadence="per month for 90 days" body="For one clinic, department, or chronic-care program to prove the care loop." items={pilotIncludes} cta="Book pilot" href="mailto:hello@hanna.care?subject=Hanna%2090-Day%20Care%20Intelligence%20Pilot" />
-        <PricingCard featured eyebrow="Annual department system" title="Hanna Care Intelligence" price="฿85,000" cadence="per month, billed annually" body="The core annual care intelligence package for one department or chronic-care program." items={annualIncludes} cta="Discuss annual plan" href="mailto:hello@hanna.care?subject=Hanna%20Care%20Intelligence%20Annual" />
-        <PricingCard eyebrow="Multi-site / payer" title="Hanna Enterprise" price="From ฿250,000" cadence="per month, annual only" body="For hospital groups, multi-department rollout, or insurer programs." items={enterpriseIncludes} cta="Talk enterprise" href="mailto:hello@hanna.care?subject=Hanna%20Enterprise" />
+      <div className="mt-10 grid gap-4 lg:grid-cols-3">
+        <PricingCard eyebrow="Proof" title="Hanna Pilot" price="฿60,000" cadence="/ month for 90 days" body="For one clinic or department to prove the care loop." items={pilotIncludes} cta="Book pilot" href="mailto:hello@hanna.care?subject=Hanna%2090-Day%20Care%20Intelligence%20Pilot" metric="90 days" />
+        <PricingCard featured eyebrow="Core" title="Care Intelligence" price="฿85,000" cadence="/ month, billed annually" body="For one department running the full annual system." items={annualIncludes} cta="Discuss annual plan" href="mailto:hello@hanna.care?subject=Hanna%20Care%20Intelligence%20Annual" metric="Annual" />
+        <PricingCard eyebrow="Scale" title="Enterprise" price="From ฿250,000" cadence="/ month, annual only" body="For hospital groups, multi-site rollout, or payer programs." items={enterpriseIncludes} cta="Talk enterprise" href="mailto:hello@hanna.care?subject=Hanna%20Enterprise" metric="Multi-site" />
       </div>
     </Section>
   );
 }
 
-function PricingCard({ eyebrow, title, price, cadence, body, items, cta, href, featured = false }: { eyebrow: string; title: string; price: string; cadence: string; body: string; items: string[]; cta: string; href: string; featured?: boolean }) {
+function PricingCard({ eyebrow, title, price, cadence, body, items, cta, href, metric, featured = false }: { eyebrow: string; title: string; price: string; cadence: string; body: string; items: string[]; cta: string; href: string; metric: string; featured?: boolean }) {
   return (
-    <div className={`rounded-[1.35rem] border p-5 shadow-sm backdrop-blur-xl ${featured ? 'border-slate-950 bg-[#07111f] text-white shadow-slate-950/12' : 'border-slate-200/70 bg-white/82 text-slate-950'}`}>
-      <div className="border-b border-current/10 pb-5">
-        <p className={`text-xs font-semibold uppercase tracking-[0.13em] ${featured ? 'text-emerald-300' : 'text-emerald-600'}`}>{eyebrow}</p>
-        <h3 className="mt-3 text-lg font-medium tracking-[-0.025em]">{title}</h3>
-        <p className="mt-5 text-[2.2rem] font-medium leading-none tracking-[-0.04em]">{price}</p>
+    <div className={`overflow-hidden rounded-[1.35rem] border shadow-sm backdrop-blur-xl ${featured ? 'border-slate-950 bg-[#07111f] text-white shadow-slate-950/12' : 'border-slate-200/70 bg-white/82 text-slate-950'}`}>
+      <div className={`flex items-center justify-between border-b px-5 py-4 ${featured ? 'border-white/10' : 'border-slate-200/70'}`}>
+        <p className={`text-xs font-semibold uppercase tracking-[0.14em] ${featured ? 'text-emerald-300' : 'text-emerald-600'}`}>{eyebrow}</p>
+        <span className={`rounded-full px-3 py-1 text-xs font-semibold ${featured ? 'bg-white/10 text-white/70' : 'bg-slate-100 text-slate-500'}`}>{metric}</span>
+      </div>
+
+      <div className="p-5">
+        <h3 className="text-lg font-medium tracking-[-0.025em]">{title}</h3>
+        <p className="mt-4 text-[2.05rem] font-medium leading-none tracking-[-0.04em]">{price}</p>
         <p className={`mt-2 text-sm font-medium ${featured ? 'text-white/55' : 'text-slate-500'}`}>{cadence}</p>
-        <p className={`mt-5 text-sm leading-6 ${featured ? 'text-white/68' : 'text-slate-600'}`}>{body}</p>
-      </div>
-      <div className="mt-5 grid gap-2.5">
-        {items.map((item) => (
-          <div key={item} className={`flex items-start gap-3 rounded-xl p-3 ${featured ? 'bg-white/[0.065]' : 'bg-slate-50'}`}>
-            <CheckCircle2 className={`mt-0.5 h-4 w-4 shrink-0 ${featured ? 'text-emerald-300' : 'text-emerald-500'}`} />
-            <span className={`text-sm font-medium leading-6 ${featured ? 'text-white/78' : 'text-slate-700'}`}>{item}</span>
+        <p className={`mt-5 min-h-[48px] text-sm leading-6 ${featured ? 'text-white/68' : 'text-slate-600'}`}>{body}</p>
+
+        <div className={`mt-5 rounded-2xl p-4 ${featured ? 'bg-white/[0.065]' : 'bg-slate-50'}`}>
+          <p className={`mb-3 text-xs font-semibold uppercase tracking-[0.14em] ${featured ? 'text-white/48' : 'text-slate-400'}`}>Includes</p>
+          <div className="grid gap-2.5">
+            {items.map((item) => (
+              <div key={item} className="flex items-start gap-2.5">
+                <CheckCircle2 className={`mt-0.5 h-4 w-4 shrink-0 ${featured ? 'text-emerald-300' : 'text-emerald-500'}`} />
+                <span className={`text-sm leading-5 ${featured ? 'text-white/78' : 'text-slate-700'}`}>{item}</span>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+
+        <a href={href} className={`mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-semibold transition ${featured ? 'bg-white text-slate-950 hover:bg-slate-100' : 'bg-slate-950 text-white hover:bg-slate-800'}`}>
+          {cta}<ArrowRight className="h-4 w-4" />
+        </a>
       </div>
-      <a href={href} className={`mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-semibold transition ${featured ? 'bg-white text-slate-950 hover:bg-slate-100' : 'bg-slate-950 text-white hover:bg-slate-800'}`}>
-        {cta}<ArrowRight className="h-4 w-4" />
-      </a>
     </div>
   );
 }
