@@ -92,7 +92,6 @@ button {
   color: inherit;
 }
 
-/* Full-page direction: Framer-like simplicity + Hanna clinical trust. */
 header {
   border-bottom-color: rgba(226, 232, 240, 0.62) !important;
   background: rgba(255, 255, 255, 0.78) !important;
@@ -106,7 +105,6 @@ section {
   scroll-margin-top: 5rem;
 }
 
-/* Hero: one calm first impression, not a loud two-column SaaS block. */
 #top {
   padding-top: 8.6rem !important;
   padding-bottom: 4.6rem !important;
@@ -182,28 +180,53 @@ section {
   color: #64748b !important;
 }
 
-/* Hero product surface: centered mockup like the reference, smaller and more premium. */
+/* Hero product visual: replace dashboard with a calm guided-care surface. */
 #top > div > div > div:nth-child(2) {
+  position: relative !important;
   max-width: 760px !important;
   width: 100% !important;
+  height: 360px !important;
   margin: 0 auto !important;
 }
 
-#top > div > div > div:nth-child(2) > div:first-child {
-  opacity: 0.52 !important;
-  filter: blur(34px) !important;
+#top > div > div > div:nth-child(2) > * {
+  display: none !important;
 }
 
-#top > div > div > div:nth-child(2) > div:nth-child(2) {
-  border-radius: 1.7rem !important;
-  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.12) !important;
+#top > div > div > div:nth-child(2)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 2rem;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.72)),
+    radial-gradient(circle at 18% 18%, rgba(16,185,129,0.12), transparent 34%),
+    radial-gradient(circle at 86% 20%, rgba(14,165,233,0.10), transparent 32%);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 28px 80px rgba(15, 23, 42, 0.11);
+  backdrop-filter: blur(22px);
 }
 
-#top > div > div > div:nth-child(2) [class*='bg-[#07111f]'] {
-  border-radius: 1.35rem !important;
+#top > div > div > div:nth-child(2)::after {
+  content: 'Guided care path\A\AVisit documented\A✓ Note reviewed\A\ACare plan created\A✓ Instructions prepared\A\ALINE follow-up scheduled\A✓ Check-ins ready\A\ANurse priority\A✓ Watchlist updated';
+  white-space: pre-line;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(88%, 600px);
+  min-height: 250px;
+  transform: translate(-50%, -50%);
+  border-radius: 1.45rem;
+  padding: 1.7rem;
+  background: #07111f;
+  color: rgba(255,255,255,0.72);
+  text-align: left;
+  font-size: 0.95rem;
+  line-height: 1.58;
+  font-weight: 500;
+  box-shadow: 0 22px 60px rgba(7, 17, 31, 0.2);
 }
 
-/* Problem: editorial, not a second hero/card. */
 #problem {
   padding-top: 4.4rem !important;
   padding-bottom: 4.4rem !important;
@@ -253,7 +276,6 @@ section {
   display: none !important;
 }
 
-/* Platform: make the loop cleaner and less dashboard-heavy. */
 #platform > div > div {
   align-items: start !important;
 }
@@ -283,7 +305,6 @@ section {
   background: rgba(255, 255, 255, 0.72) !important;
 }
 
-/* How it works: first meaningful dark section; calm, not dramatic. */
 #how-it-works > div {
   max-width: 1120px !important;
   border-radius: 1.55rem !important;
@@ -300,7 +321,6 @@ section {
   background: rgba(255,255,255,0.052) !important;
 }
 
-/* Pricing: institutional packaging, less billboard. */
 #pricing h2::after {
   content: 'Pilot first. Annual when the care loop is proven.';
   display: block;
@@ -323,7 +343,6 @@ section {
   border-radius: 1.15rem !important;
 }
 
-/* Trust: strengthen governance message visually. */
 #trust h2::after {
   content: 'AI drafts. Care teams review. Nurses act.';
   display: block;
@@ -337,7 +356,6 @@ section {
   font-weight: 400;
 }
 
-/* Final CTA: guided care language. */
 #book-demo h2,
 #book-demo h2::before {
   color: transparent !important;
@@ -497,7 +515,15 @@ section {
   }
 
   #top > div > div > div:nth-child(2) {
+    height: 340px !important;
     margin-top: 0.8rem !important;
+  }
+
+  #top > div > div > div:nth-child(2)::after {
+    width: min(90%, 520px);
+    min-height: 248px;
+    padding: 1.35rem;
+    font-size: 0.88rem;
   }
 
   #platform,
