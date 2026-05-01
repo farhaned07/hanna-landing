@@ -92,6 +92,12 @@ button {
   color: inherit;
 }
 
+/* Remove redundant sections from the landing flow. */
+#audience,
+#system {
+  display: none !important;
+}
+
 header {
   border-bottom-color: rgba(226, 232, 240, 0.62) !important;
   background: rgba(255, 255, 255, 0.78) !important;
@@ -180,7 +186,7 @@ section {
   color: #64748b !important;
 }
 
-/* Hero product visual: replace dashboard with a calm guided-care surface. */
+/* Hero product visual: calm guided-care surface. */
 #top > div > div > div:nth-child(2) {
   position: relative !important;
   max-width: 760px !important;
@@ -294,13 +300,11 @@ section {
 }
 
 #platform [class*='shadow-sm'],
-#audience [class*='shadow-sm'],
 #trust [class*='shadow-sm'] {
   box-shadow: 0 12px 34px rgba(15, 23, 42, 0.055) !important;
 }
 
-#platform [class*='rounded-[1.65rem]'],
-#system [class*='rounded-[1.65rem]'] {
+#platform [class*='rounded-[1.65rem]'] {
   border-radius: 1.35rem !important;
   background: rgba(255, 255, 255, 0.72) !important;
 }
@@ -527,9 +531,7 @@ section {
   }
 
   #platform,
-  #audience,
   #pricing,
-  #system,
   #trust,
   #problem,
   #how-it-works,
@@ -542,10 +544,8 @@ section {
   #book-demo h2,
   #platform h2,
   #pricing h2,
-  #system h2,
   #trust h2,
-  #problem h2,
-  #audience h2 {
+  #problem h2 {
     font-size: clamp(1.9rem, 8vw, 2.45rem) !important;
     font-weight: 500 !important;
     line-height: 1.12 !important;
@@ -560,9 +560,7 @@ section {
 
   #how-it-works .sm\:grid-cols-2,
   #book-demo .sm\:grid-cols-2,
-  #pricing .sm\:grid-cols-2,
-  #system .sm\:grid-cols-2,
-  #audience .sm\:grid-cols-2 {
+  #pricing .sm\:grid-cols-2 {
     grid-template-columns: 1fr !important;
   }
 
