@@ -14,8 +14,8 @@ html {
 body {
   @apply bg-surface text-text-primary font-body leading-loose;
   background-image:
-    radial-gradient(circle at 20% 30%, rgba(109, 157, 173, 0.055), transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(13, 70, 95, 0.04), transparent 40%);
+    radial-gradient(circle at 50% 0%, rgba(109, 157, 173, 0.07), transparent 34%),
+    radial-gradient(circle at 85% 28%, rgba(13, 70, 95, 0.04), transparent 34%);
   background-attachment: fixed;
   overflow-x: hidden;
 }
@@ -92,17 +92,71 @@ button {
   color: inherit;
 }
 
-/* Hero message lock */
+/* Full-page direction: Framer-like simplicity + Hanna clinical trust. */
+header {
+  border-bottom-color: rgba(226, 232, 240, 0.62) !important;
+  background: rgba(255, 255, 255, 0.78) !important;
+}
+
+header a[href^='mailto'] {
+  box-shadow: 0 10px 24px rgba(7, 17, 31, 0.08) !important;
+}
+
+section {
+  scroll-margin-top: 5rem;
+}
+
+/* Hero: one calm first impression, not a loud two-column SaaS block. */
+#top {
+  padding-top: 8.6rem !important;
+  padding-bottom: 4.6rem !important;
+}
+
+#top > div {
+  max-width: 1120px !important;
+}
+
+#top > div > div {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 2.2rem !important;
+  text-align: center !important;
+  align-items: center !important;
+}
+
+#top > div > div > div:first-child {
+  max-width: 820px !important;
+  margin: 0 auto !important;
+}
+
+#top .inline-flex {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #top h1,
 #top h1 + p {
   position: relative;
   color: transparent !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+#top h1 {
+  max-width: 820px !important;
+  font-size: clamp(3.25rem, 7.2vw, 5.85rem) !important;
+  line-height: 0.98 !important;
+  letter-spacing: -0.065em !important;
+  font-weight: 500 !important;
+}
+
+#top h1 + p {
+  max-width: 660px !important;
 }
 
 #top h1::before,
 #top h1 + p::before {
   display: block;
-  color: inherit;
   position: absolute;
   inset: 0;
   pointer-events: none;
@@ -119,29 +173,74 @@ button {
   color: #475569;
 }
 
-/* Page-grid fix: problem is editorial, not a second hero card. */
+#top .mt-8 {
+  justify-content: center !important;
+}
+
+#top .mt-5.text-sm {
+  font-weight: 500 !important;
+  color: #64748b !important;
+}
+
+/* Hero product surface: centered mockup like the reference, smaller and more premium. */
+#top > div > div > div:nth-child(2) {
+  max-width: 760px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+
+#top > div > div > div:nth-child(2) > div:first-child {
+  opacity: 0.52 !important;
+  filter: blur(34px) !important;
+}
+
+#top > div > div > div:nth-child(2) > div:nth-child(2) {
+  border-radius: 1.7rem !important;
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.12) !important;
+}
+
+#top > div > div > div:nth-child(2) [class*='bg-[#07111f]'] {
+  border-radius: 1.35rem !important;
+}
+
+/* Problem: editorial, not a second hero/card. */
+#problem {
+  padding-top: 4.4rem !important;
+  padding-bottom: 4.4rem !important;
+}
+
 #problem > div > div {
   display: block !important;
-  max-width: 1180px !important;
+  max-width: 960px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+
+#problem > div > div > div:first-child {
+  max-width: 760px !important;
   margin-left: auto !important;
   margin-right: auto !important;
 }
 
-#problem > div > div > div:first-child {
-  max-width: 720px !important;
-  margin-left: 0 !important;
+#problem > div > div > div:first-child p:first-child {
+  justify-content: center !important;
+}
+
+#problem > div > div > div:first-child p:not(:first-child) {
+  margin-left: auto !important;
   margin-right: auto !important;
 }
 
 #problem > div > div > div:first-child::after {
   content: 'Plan given → Manual follow-up → Silent risk → Hanna closes the gap';
   display: block;
-  width: min(100%, 640px);
-  margin-top: 2rem;
-  padding: 0.95rem 1.05rem;
+  width: min(100%, 760px);
+  margin: 2rem auto 0;
+  padding: 0.95rem 1.1rem;
   border: 1px solid rgba(203, 213, 225, 0.72);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.62);
+  background: rgba(255, 255, 255, 0.7);
   color: #475569;
   font-size: 0.92rem;
   line-height: 1.65;
@@ -154,12 +253,110 @@ button {
   display: none !important;
 }
 
-@media (min-width: 1024px) {
-  #top h1 {
-    max-width: 720px;
-  }
+/* Platform: make the loop cleaner and less dashboard-heavy. */
+#platform > div > div {
+  align-items: start !important;
+}
 
-  #top > div,
+#platform h2::after {
+  content: 'Visit → Documentation → Care plan → LINE follow-up → Nurse priority';
+  display: block;
+  margin-top: 1.35rem;
+  max-width: 760px;
+  font-family: Inter, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  letter-spacing: 0;
+  color: #64748b;
+  font-weight: 500;
+}
+
+#platform [class*='shadow-sm'],
+#audience [class*='shadow-sm'],
+#trust [class*='shadow-sm'] {
+  box-shadow: 0 12px 34px rgba(15, 23, 42, 0.055) !important;
+}
+
+#platform [class*='rounded-[1.65rem]'],
+#system [class*='rounded-[1.65rem]'] {
+  border-radius: 1.35rem !important;
+  background: rgba(255, 255, 255, 0.72) !important;
+}
+
+/* How it works: first meaningful dark section; calm, not dramatic. */
+#how-it-works > div {
+  max-width: 1120px !important;
+  border-radius: 1.55rem !important;
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.14) !important;
+}
+
+#how-it-works h2,
+#book-demo h2 {
+  color: #ffffff !important;
+}
+
+#how-it-works [class*='bg-white/[0.055]'],
+#book-demo [class*='bg-white/[0.055]'] {
+  background: rgba(255,255,255,0.052) !important;
+}
+
+/* Pricing: institutional packaging, less billboard. */
+#pricing h2::after {
+  content: 'Pilot first. Annual when the care loop is proven.';
+  display: block;
+  margin: 1rem auto 0;
+  max-width: 560px;
+  font-family: Inter, sans-serif;
+  font-size: 0.96rem;
+  line-height: 1.7;
+  letter-spacing: 0;
+  color: #64748b;
+  font-weight: 400;
+}
+
+#pricing .text-\[2\.05rem\] {
+  font-size: 1.92rem !important;
+  letter-spacing: -0.035em !important;
+}
+
+#pricing [class*='rounded-[1.35rem]'] {
+  border-radius: 1.15rem !important;
+}
+
+/* Trust: strengthen governance message visually. */
+#trust h2::after {
+  content: 'AI drafts. Care teams review. Nurses act.';
+  display: block;
+  margin: 1rem auto 0;
+  max-width: 560px;
+  font-family: Inter, sans-serif;
+  font-size: 0.96rem;
+  line-height: 1.7;
+  letter-spacing: 0;
+  color: #64748b;
+  font-weight: 400;
+}
+
+/* Final CTA: guided care language. */
+#book-demo h2,
+#book-demo h2::before {
+  color: transparent !important;
+}
+
+#book-demo h2 {
+  position: relative;
+}
+
+#book-demo h2::after {
+  content: 'Prove guided care in 90 days.';
+  display: block;
+  position: absolute;
+  inset: 0;
+  color: #ffffff;
+  pointer-events: none;
+}
+
+@media (min-width: 1024px) {
   section > div {
     max-width: 1180px !important;
   }
@@ -264,20 +461,19 @@ button {
   }
 
   #top {
-    padding-top: 6.4rem !important;
-    padding-bottom: 3.1rem !important;
+    padding-top: 6.6rem !important;
+    padding-bottom: 3.4rem !important;
   }
 
   #top h1 {
-    font-size: clamp(2.18rem, 9.2vw, 3rem) !important;
-    line-height: 1.1 !important;
-    letter-spacing: -0.042em !important;
-    font-weight: 500 !important;
+    font-size: clamp(2.65rem, 12.2vw, 4rem) !important;
+    line-height: 1 !important;
+    letter-spacing: -0.058em !important;
     max-width: 100% !important;
   }
 
   #top h1 + p {
-    margin-top: 1.05rem !important;
+    margin-top: 1.1rem !important;
     font-size: 1rem !important;
     line-height: 1.66 !important;
   }
@@ -298,6 +494,10 @@ button {
     padding-top: 0.88rem !important;
     padding-bottom: 0.88rem !important;
     min-height: 3.2rem !important;
+  }
+
+  #top > div > div > div:nth-child(2) {
+    margin-top: 0.8rem !important;
   }
 
   #platform,
@@ -326,6 +526,12 @@ button {
     letter-spacing: -0.034em !important;
   }
 
+  #platform h2::after,
+  #pricing h2::after,
+  #trust h2::after {
+    font-size: 0.9rem !important;
+  }
+
   #how-it-works .sm\:grid-cols-2,
   #book-demo .sm\:grid-cols-2,
   #pricing .sm\:grid-cols-2,
@@ -342,8 +548,8 @@ button {
 
 @media (max-width: 390px) {
   #top h1 {
-    font-size: clamp(2.05rem, 8.8vw, 2.65rem) !important;
-    line-height: 1.12 !important;
+    font-size: clamp(2.35rem, 11vw, 3.35rem) !important;
+    line-height: 1.03 !important;
   }
 
   #top h1 + p {
