@@ -153,23 +153,25 @@ button {
   .rounded-\[2\.75rem\],
   .rounded-\[2\.35rem\],
   .rounded-\[2rem\] {
-    border-radius: 1.55rem !important;
+    border-radius: 1.45rem !important;
   }
 
-  .rounded-\[2\.15rem\] {
-    border-radius: 1.35rem !important;
+  .rounded-\[2\.15rem\],
+  .rounded-\[1\.65rem\] {
+    border-radius: 1.28rem !important;
   }
 
   h2,
   .sm\:text-6xl,
   .sm\:text-5xl {
-    font-size: clamp(2rem, 8.4vw, 2.9rem) !important;
-    line-height: 1.06 !important;
-    letter-spacing: -0.048em !important;
+    font-size: clamp(1.9rem, 7.4vw, 2.55rem) !important;
+    line-height: 1.12 !important;
+    letter-spacing: -0.036em !important;
+    font-weight: 500 !important;
   }
 
   h3 {
-    line-height: 1.16 !important;
+    line-height: 1.18 !important;
   }
 
   p {
@@ -182,12 +184,12 @@ button {
 
   .shadow-2xl,
   .shadow-xl {
-    box-shadow: 0 16px 42px rgba(15, 23, 42, 0.10) !important;
+    box-shadow: 0 16px 42px rgba(15, 23, 42, 0.09) !important;
   }
 
   #how-it-works > div,
   #book-demo > div {
-    padding: 1.6rem 1.25rem !important;
+    padding: 1.55rem 1.2rem !important;
   }
 
   #how-it-works .grid,
@@ -214,14 +216,14 @@ button {
     grid-template-columns: 1fr !important;
   }
 
-  #pricing .text-4xl {
-    font-size: 2.35rem !important;
+  #pricing .text-\[2\.2rem\] {
+    font-size: 2rem !important;
   }
 
   #system .grid,
   #audience .grid,
   #problem .grid {
-    gap: 1.65rem !important;
+    gap: 1.55rem !important;
   }
 }
 
@@ -292,14 +294,14 @@ button {
   #system,
   #trust,
   #problem {
-    padding-top: 3.4rem !important;
-    padding-bottom: 3.4rem !important;
+    padding-top: 3.2rem !important;
+    padding-bottom: 3.2rem !important;
   }
 
   #how-it-works,
   #book-demo {
-    padding-top: 3.4rem !important;
-    padding-bottom: 3.4rem !important;
+    padding-top: 3.2rem !important;
+    padding-bottom: 3.2rem !important;
   }
 
   #how-it-works h2,
@@ -310,7 +312,10 @@ button {
   #trust h2,
   #problem h2,
   #audience h2 {
-    font-size: clamp(2rem, 8.8vw, 2.75rem) !important;
+    font-size: clamp(1.9rem, 8vw, 2.45rem) !important;
+    font-weight: 500 !important;
+    line-height: 1.12 !important;
+    letter-spacing: -0.034em !important;
   }
 
   #how-it-works .rounded-3xl,
@@ -318,8 +323,12 @@ button {
   #pricing .rounded-3xl,
   #system .rounded-3xl,
   #audience .rounded-3xl,
-  #trust .rounded-3xl {
-    padding: 1.15rem !important;
+  #trust .rounded-3xl,
+  #pricing .rounded-\[1\.35rem\],
+  #system .rounded-\[1\.35rem\],
+  #audience .rounded-\[1\.35rem\],
+  #trust .rounded-\[1\.35rem\] {
+    padding: 1.1rem !important;
   }
 
   #how-it-works .text-base,
