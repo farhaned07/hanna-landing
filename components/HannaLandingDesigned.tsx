@@ -38,28 +38,13 @@ const stats = [
   ['40%', 'reduction in adverse events reported with real-time care intelligence'],
 ];
 
-const platformModules = [
-  {
-    icon: Mic2,
-    name: 'Hanna Scribe',
-    label: 'Clinical Documentation',
-    body: 'AI-powered ambient documentation that listens and prepares structured clinical notes for review — reducing documentation burden without changing how clinicians work.',
-    signal: 'Visit → note',
-  },
-  {
-    icon: Activity,
-    name: 'Hanna Watch',
-    label: 'Patient Monitoring',
-    body: 'Continuous patient visibility across wards and follow-up programs. Early warning scores, deterioration signals, and escalations are surfaced before they become emergencies.',
-    signal: 'Patient → signal',
-  },
-  {
-    icon: BarChart3,
-    name: 'Hanna Lens',
-    label: 'Operational Intelligence',
-    body: 'Leadership dashboards for bed utilisation, staff load, readmission risk, compliance signals, and continuity performance — all in one command view.',
-    signal: 'Signal → decision',
-  },
+const platformLoop = [
+  { icon: Mic2, title: 'Document', body: 'Turn each visit into a structured clinical note for review.', signal: 'Visit → note' },
+  { icon: ClipboardList, title: 'Plan', body: 'Convert the note into a clear care plan and follow-up path.', signal: 'Note → plan' },
+  { icon: MessageCircle, title: 'Follow up', body: 'Continue the care journey through LINE check-ins and patient replies.', signal: 'Plan → follow-up' },
+  { icon: Activity, title: 'Detect', body: 'Turn silence, symptoms, missed medication, and abnormal values into risk signals.', signal: 'Patient → signal' },
+  { icon: HeartPulse, title: 'Prioritize', body: 'Show nurses who needs attention today, without chasing every patient manually.', signal: 'Signal → action' },
+  { icon: BarChart3, title: 'Report', body: 'Give leadership visibility into follow-up activity, escalations, and outcomes.', signal: 'Action → report' },
 ];
 
 const steps = [
@@ -243,52 +228,45 @@ function Platform() {
   return (
     <Section id="platform">
       <div className="mx-auto max-w-6xl">
-        <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
-          <div>
-            <p className={eyebrow}>The Hanna Platform</p>
-            <h2 className={`mt-4 ${sectionTitle}`}>One platform. Complete intelligence. Every level of care.</h2>
-          </div>
-          <p className={`${bodyText} lg:pb-2`}>
-            Hanna is not a data warehouse. It is a care intelligence layer that sits across your existing systems, unifies clinical and operational signals, and delivers the right insight to the right person — at the right moment.
+        <div className="mx-auto max-w-3xl text-center">
+          <p className={eyebrow}>The Hanna Platform</p>
+          <h2 className={`mt-4 ${sectionTitle}`}>One platform. Complete intelligence. Every level of care.</h2>
+          <p className={`mt-5 ${bodyText}`}>
+            Hanna is not a data warehouse. It is a care intelligence layer that connects the signals already moving through your hospital — visits, notes, care plans, follow-ups, risk signals, nurse actions, and leadership reports.
           </p>
         </div>
 
-        <div className="mt-10 overflow-hidden rounded-[2rem] border border-slate-200/80 bg-white/72 shadow-sm shadow-slate-950/5 backdrop-blur-xl">
-          <div className="grid lg:grid-cols-[0.82fr_1.18fr]">
-            <div className="border-b border-slate-200/80 p-5 sm:p-8 lg:border-b-0 lg:border-r lg:p-10">
-              <div className="rounded-[1.45rem] bg-[#07111f] p-5 text-white sm:p-6">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-300">Command layer</p>
-                <h3 className="mt-4 text-2xl font-medium leading-tight tracking-[-0.04em]">From scattered data to coordinated care.</h3>
-                <div className="mt-6 grid gap-3">
-                  {['Clinical notes', 'Patient monitoring', 'Operational dashboards'].map((item) => (
-                    <div key={item} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.06] p-4">
-                      <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-300" />
-                      <p className="text-sm font-medium text-white/78">{item}</p>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-5 rounded-2xl bg-white p-4 text-slate-950">
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-emerald-600">Outcome</p>
-                  <p className="mt-1 text-base font-medium leading-6">A single care intelligence view for every level of care.</p>
-                </div>
+        <div className="mt-10 rounded-[2rem] border border-slate-200/80 bg-white/72 p-5 shadow-sm shadow-slate-950/5 backdrop-blur-xl sm:p-8 lg:p-10">
+          <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <div className="rounded-[1.45rem] bg-[#07111f] p-5 text-white sm:p-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-300">Care intelligence loop</p>
+              <h3 className="mt-4 text-2xl font-medium leading-tight tracking-[-0.04em]">From fragmented signals to coordinated action.</h3>
+              <p className="mt-4 text-sm leading-7 text-white/60">
+                Hanna connects what happens in the visit, what happens after the patient leaves, and what leadership needs to see before the next report is too late.
+              </p>
+              <div className="mt-6 rounded-2xl bg-white p-4 text-slate-950">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-emerald-600">Platform outcome</p>
+                <p className="mt-1 text-base font-medium leading-6">The right patient, the right signal, the right action — visible to the right person.</p>
               </div>
             </div>
 
-            <div className="grid divide-y divide-slate-200/80">
-              {platformModules.map((module) => {
-                const Icon = module.icon;
+            <div className="grid gap-3 sm:grid-cols-2">
+              {platformLoop.map((item, index) => {
+                const Icon = item.icon;
                 return (
-                  <article key={module.name} className="grid gap-5 p-5 transition hover:bg-white/70 sm:p-7 md:grid-cols-[auto_1fr_auto] md:items-start">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-white shadow-sm shadow-slate-950/10">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-600">{module.label}</p>
-                      <h3 className="mt-2 text-xl font-medium tracking-[-0.035em] text-slate-950">{module.name}</h3>
-                      <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">{module.body}</p>
-                    </div>
-                    <div className="inline-flex w-fit items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-500 md:mt-1">
-                      {module.signal}
+                  <article key={item.title} className="rounded-[1.35rem] border border-slate-200/80 bg-slate-50/80 p-4">
+                    <div className="flex items-start gap-3">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-950 text-white">
+                        <Icon className="h-4 w-4" />
+                      </div>
+                      <div>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="text-xs font-semibold text-emerald-600">0{index + 1}</span>
+                          <h3 className="text-base font-medium tracking-[-0.02em] text-slate-950">{item.title}</h3>
+                        </div>
+                        <p className="mt-2 text-sm leading-6 text-slate-600">{item.body}</p>
+                        <p className="mt-3 inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-500">{item.signal}</p>
+                      </div>
                     </div>
                   </article>
                 );
