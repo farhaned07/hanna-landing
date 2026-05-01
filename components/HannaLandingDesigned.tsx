@@ -6,8 +6,6 @@ import {
   BarChart3,
   CheckCircle2,
   ClipboardList,
-  Eye,
-  FileText,
   HeartPulse,
   Layers3,
   LineChart,
@@ -40,11 +38,28 @@ const stats = [
   ['40%', 'reduction in adverse events reported with real-time care intelligence'],
 ];
 
-const platformItems = [
-  { icon: Mic2, title: 'Documentation', body: 'Structured clinical notes prepared from each visit.' },
-  { icon: ClipboardList, title: 'Care plan', body: 'Clear next steps and follow-up timing for patients.' },
-  { icon: MessageCircle, title: 'Follow-up', body: 'LINE check-ins continue the care path after discharge or clinic visit.' },
-  { icon: HeartPulse, title: 'Priority', body: 'Risk signals become a focused nurse review list.' },
+const platformModules = [
+  {
+    icon: Mic2,
+    name: 'Hanna Scribe',
+    label: 'Clinical Documentation',
+    body: 'AI-powered ambient documentation that listens and prepares structured clinical notes for review — reducing documentation burden without changing how clinicians work.',
+    signal: 'Visit → note',
+  },
+  {
+    icon: Activity,
+    name: 'Hanna Watch',
+    label: 'Patient Monitoring',
+    body: 'Continuous patient visibility across wards and follow-up programs. Early warning scores, deterioration signals, and escalations are surfaced before they become emergencies.',
+    signal: 'Patient → signal',
+  },
+  {
+    icon: BarChart3,
+    name: 'Hanna Lens',
+    label: 'Operational Intelligence',
+    body: 'Leadership dashboards for bed utilisation, staff load, readmission risk, compliance signals, and continuity performance — all in one command view.',
+    signal: 'Signal → decision',
+  },
 ];
 
 const steps = [
@@ -227,22 +242,60 @@ function Problem() {
 function Platform() {
   return (
     <Section id="platform">
-      <div className="mx-auto max-w-2xl text-center">
-        <p className={eyebrow}>The Platform</p>
-        <h2 className={`mt-4 ${sectionTitle}`}>One care intelligence loop.</h2>
-        <p className={`mt-5 ${bodyText}`}>Documentation is only the entry point. Hanna connects the visit to care planning, follow-up, risk visibility, nurse action, and reporting.</p>
-      </div>
-      <div className="mt-10 grid gap-4 lg:grid-cols-4">
-        {platformItems.map((item) => {
-          const Icon = item.icon;
-          return (
-            <div key={item.title} className="rounded-[1.45rem] border border-slate-200/80 bg-white/76 p-5 shadow-sm shadow-slate-950/5 backdrop-blur-xl">
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-950 text-white"><Icon className="h-5 w-5" /></div>
-              <h3 className="mt-6 text-lg font-medium tracking-[-0.025em] text-slate-950">{item.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-600">{item.body}</p>
+      <div className="mx-auto max-w-6xl">
+        <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
+          <div>
+            <p className={eyebrow}>The Hanna Platform</p>
+            <h2 className={`mt-4 ${sectionTitle}`}>One platform. Complete intelligence. Every level of care.</h2>
+          </div>
+          <p className={`${bodyText} lg:pb-2`}>
+            Hanna is not a data warehouse. It is a care intelligence layer that sits across your existing systems, unifies clinical and operational signals, and delivers the right insight to the right person — at the right moment.
+          </p>
+        </div>
+
+        <div className="mt-10 overflow-hidden rounded-[2rem] border border-slate-200/80 bg-white/72 shadow-sm shadow-slate-950/5 backdrop-blur-xl">
+          <div className="grid lg:grid-cols-[0.82fr_1.18fr]">
+            <div className="border-b border-slate-200/80 p-5 sm:p-8 lg:border-b-0 lg:border-r lg:p-10">
+              <div className="rounded-[1.45rem] bg-[#07111f] p-5 text-white sm:p-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-300">Command layer</p>
+                <h3 className="mt-4 text-2xl font-medium leading-tight tracking-[-0.04em]">From scattered data to coordinated care.</h3>
+                <div className="mt-6 grid gap-3">
+                  {['Clinical notes', 'Patient monitoring', 'Operational dashboards'].map((item) => (
+                    <div key={item} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.06] p-4">
+                      <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-300" />
+                      <p className="text-sm font-medium text-white/78">{item}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-5 rounded-2xl bg-white p-4 text-slate-950">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-emerald-600">Outcome</p>
+                  <p className="mt-1 text-base font-medium leading-6">A single care intelligence view for every level of care.</p>
+                </div>
+              </div>
             </div>
-          );
-        })}
+
+            <div className="grid divide-y divide-slate-200/80">
+              {platformModules.map((module) => {
+                const Icon = module.icon;
+                return (
+                  <article key={module.name} className="grid gap-5 p-5 transition hover:bg-white/70 sm:p-7 md:grid-cols-[auto_1fr_auto] md:items-start">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-white shadow-sm shadow-slate-950/10">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-600">{module.label}</p>
+                      <h3 className="mt-2 text-xl font-medium tracking-[-0.035em] text-slate-950">{module.name}</h3>
+                      <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">{module.body}</p>
+                    </div>
+                    <div className="inline-flex w-fit items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-500 md:mt-1">
+                      {module.signal}
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </div>
       </div>
     </Section>
   );
