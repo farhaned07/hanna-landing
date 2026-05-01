@@ -92,6 +92,33 @@ button {
   color: inherit;
 }
 
+/* Hero message lock */
+#top h1,
+#top h1 + p {
+  position: relative;
+  color: transparent !important;
+}
+
+#top h1::before,
+#top h1 + p::before {
+  display: block;
+  color: inherit;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  white-space: normal;
+}
+
+#top h1::before {
+  content: 'Turn clinic visits into guided care.';
+  color: #020617;
+}
+
+#top h1 + p::before {
+  content: 'Hanna creates the documentation, care plan, LINE follow-up, and nurse priority list after each visit.';
+  color: #475569;
+}
+
 /* Page-grid fix: problem is editorial, not a second hero card. */
 #problem > div > div {
   display: block !important;
