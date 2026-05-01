@@ -146,19 +146,19 @@ function Hero() {
   return (
     <section id="top" className="relative z-10 px-5 pb-16 pt-32 lg:px-8 lg:pb-24 lg:pt-36">
       <motion.div className="mx-auto max-w-7xl" initial="hidden" animate="visible" variants={stagger}>
-        <div className="grid items-center gap-12 lg:grid-cols-[0.98fr_1.02fr]">
+        <div className="grid items-center gap-12 lg:grid-cols-[0.92fr_1.08fr]">
           <motion.div variants={fadeUp} transition={smooth}>
             <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/78 px-3.5 py-2 text-sm font-medium text-slate-700 shadow-sm backdrop-blur-xl">
               <Sparkles className="h-4 w-4 text-emerald-500" />
               Hanna Care Intelligence
             </div>
 
-            <h1 className="max-w-4xl text-4xl font-semibold leading-[1.02] tracking-[-0.055em] text-slate-950 sm:text-5xl lg:text-6xl xl:text-[4.9rem]">
-              Turn every clinic visit into a care plan, follow-up, and nurse priority list.
+            <h1 className="max-w-3xl text-[2.9rem] font-medium leading-[1.08] tracking-[-0.042em] text-slate-950 sm:text-[3.55rem] lg:text-[4.15rem] xl:text-[4.45rem]">
+              Turn every clinic visit into care that continues.
             </h1>
 
             <p className="mt-6 max-w-xl text-base leading-8 text-slate-600 sm:text-lg">
-              Hanna helps chronic care teams document visits, continue care through LINE, detect patient risk, and know who needs attention today.
+              Hanna creates the note, care plan, LINE follow-up, and nurse priority list from each visit.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
