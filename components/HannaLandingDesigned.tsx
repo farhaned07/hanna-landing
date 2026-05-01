@@ -41,7 +41,7 @@ const stats = [
 const platformLoop = [
   { icon: Mic2, title: 'Document', body: 'Turn each visit into a structured clinical note for review.', signal: 'Visit → note' },
   { icon: ClipboardList, title: 'Plan', body: 'Convert the note into a clear care plan and follow-up path.', signal: 'Note → plan' },
-  { icon: MessageCircle, title: 'Follow up', body: 'Continue the care journey through LINE check-ins and patient replies.', signal: 'Plan → follow-up' },
+  { icon: MessageCircle, title: 'Follow up', body: 'Continue the care journey through omnichannel check-ins and patient replies.', signal: 'Plan → follow-up' },
   { icon: Activity, title: 'Detect', body: 'Turn silence, symptoms, missed medication, and abnormal values into risk signals.', signal: 'Patient → signal' },
   { icon: HeartPulse, title: 'Prioritize', body: 'Show nurses who needs attention today, without chasing every patient manually.', signal: 'Signal → action' },
   { icon: BarChart3, title: 'Report', body: 'Give leadership visibility into follow-up activity, escalations, and outcomes.', signal: 'Action → report' },
@@ -50,7 +50,7 @@ const platformLoop = [
 const steps = [
   ['Capture the visit', 'Hanna drafts structured documentation for clinician review.'],
   ['Create the care plan', 'The visit becomes patient-friendly next steps and follow-up timing.'],
-  ['Continue through LINE', 'Patients receive simple check-ins without downloading a new app.'],
+  ['Continue across channels', 'Patients receive simple check-ins through the right channel for their market: WhatsApp, LINE, SMS, email, or portal.'],
   ['Surface risk', 'Symptoms, silence, and missed medication become priority signals.'],
   ['Report outcomes', 'Leadership sees follow-up, escalation, and continuity performance.'],
 ];
@@ -61,14 +61,14 @@ const pricing = [
     price: '฿60,000',
     cadence: '/ month for 90 days',
     body: 'For one clinic or department to prove the care intelligence loop.',
-    items: ['Reviewed note workflow', 'Care plan generation', 'LINE follow-up handoff', 'Basic nurse priority view', 'Monthly report'],
+    items: ['Reviewed note workflow', 'Care plan generation', 'Omnichannel follow-up handoff', 'Basic nurse priority view', 'Monthly report'],
   },
   {
     title: 'Care Intelligence',
     price: '฿85,000',
     cadence: '/ month, billed annually',
     body: 'For one department running Hanna as an annual care intelligence system.',
-    items: ['Department care intelligence system', 'Scribe workflow for visits', 'Care plans and LINE follow-up', 'Nurse priority queue', 'Monthly leadership reports'],
+    items: ['Department care intelligence system', 'Scribe workflow for visits', 'Care plans and omnichannel follow-up', 'Nurse priority queue', 'Monthly leadership reports'],
     featured: true,
   },
   {
@@ -150,7 +150,7 @@ function Hero() {
           Turn clinic visits into guided care.
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
-          Hanna creates the documentation, care plan, LINE follow-up, and nurse priority list after each visit.
+          Hanna creates the documentation, care plan, omnichannel follow-up, and nurse priority list after each visit.
         </p>
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
           <a href="mailto:hello@hanna.care?subject=Hanna%20Platform%20Demo" className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#07111f] px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-slate-950/10 transition hover:bg-slate-800">
@@ -167,7 +167,7 @@ function Hero() {
 }
 
 function HeroSurface() {
-  const items = ['Clinical note prepared', 'Care plan created', 'LINE follow-up scheduled', 'Nurse priority updated'];
+  const items = ['Clinical note prepared', 'Care plan created', 'Omnichannel follow-up scheduled', 'Nurse priority updated'];
   return (
     <div className="relative mx-auto mt-12 max-w-3xl">
       <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-cyan-100 to-emerald-100 blur-2xl" />
@@ -232,7 +232,7 @@ function Platform() {
           <p className={eyebrow}>The Hanna Platform</p>
           <h2 className={`mt-4 ${sectionTitle}`}>One platform. Complete intelligence. Every level of care.</h2>
           <p className={`mt-5 ${bodyText}`}>
-            Hanna is not a data warehouse. It is a care intelligence layer that connects the signals already moving through your hospital — visits, notes, care plans, follow-ups, risk signals, nurse actions, and leadership reports.
+            Hanna is not a data warehouse. It is a care intelligence layer that connects the signals already moving through your hospital — visits, notes, care plans, omnichannel follow-ups, risk signals, nurse actions, and leadership reports.
           </p>
         </div>
 
@@ -242,7 +242,7 @@ function Platform() {
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-300">Care intelligence loop</p>
               <h3 className="mt-4 text-2xl font-medium leading-tight tracking-[-0.04em]">From fragmented signals to coordinated action.</h3>
               <p className="mt-4 text-sm leading-7 text-white/60">
-                Hanna connects what happens in the visit, what happens after the patient leaves, and what leadership needs to see before the next report is too late.
+                Hanna connects what happens in the visit, what happens across follow-up channels after the patient leaves, and what leadership needs to see before the next report is too late.
               </p>
               <div className="mt-6 rounded-2xl bg-white p-4 text-slate-950">
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-emerald-600">Platform outcome</p>
@@ -287,7 +287,7 @@ function HowItWorks() {
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300">How it works</p>
             <h2 className="mt-4 text-[2.2rem] font-medium leading-[1.1] tracking-[-0.04em] text-white sm:text-[3rem]">From signal to action.</h2>
-            <p className="mt-5 text-base leading-8 text-white/64">Hanna connects documentation, care planning, patient follow-up, monitoring, nurse action, and reporting.</p>
+            <p className="mt-5 text-base leading-8 text-white/64">Hanna connects documentation, care planning, omnichannel patient follow-up, monitoring, nurse action, and reporting.</p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             {steps.map(([title, body], index) => (
