@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HannaLanding from './components/HannaLanding';
+import HannaLanding from './components/HannaLandingDesigned';
 import Terms from './components/Terms';
 import Privacy from './components/Privacy';
 
